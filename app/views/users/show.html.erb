@@ -1,0 +1,24 @@
+  
+
+
+<table style="border:1px solid black;">
+  <tr >
+    
+    <th style="border:1px solid black;">Name</th>
+    
+    <th style="border:1px solid black;">Image</th>
+    <th style="border:1px solid black;">Email</th>
+    
+    
+  </tr>
+	
+	<tr>
+		<td style="border:1px dotted black;"><%=@user.name%></td>
+		<td style="border:1px dotted black;"><%= image_tag(@user.image_url.to_s) %></td>
+		<td style="border:1px dotted black;"><%=@user.email%></td>		    
+	</tr>
+	
+</table>
+
+
+<%= link_to 'All Review', reviews_path %>

@@ -1,0 +1,12 @@
+<h3>Edit a Comment</h3>
+
+	<%= form_with model: [@review, @comment], remote: true  do |f| %>
+		
+		<p>
+				<%= f.label :body %><br/>
+				<%= f.text_area :body %>
+		</p>
+		
+	<%= f.submit 'Submit' %>
+
+<% end %>

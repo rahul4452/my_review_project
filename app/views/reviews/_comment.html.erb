@@ -1,0 +1,47 @@
+_<div class="comment_show_class">
+
+  <div class="comment_show">
+      
+      <h4><%= User.find(comment.user_id).name %><br>
+        <span style="font-size: 10px; color: red">#Posted on : 
+          
+          <% case comment.created_at.strftime('%m-%d-%Y')
+              when Date.yesterday.strftime('%m-%d-%Y') %> Yesterday
+              <% when Time.zone.today.strftime('%m-%d-%Y') %> Today
+              <% when 1.day.from_now.strftime('%m-%d-%Y') %> One Day ago
+              <% else %> <%=comment.created_at.strftime('%m-%d-%Y')%>
+            <% end %>
+        </span>
+      </h4>
+
+      
+      <div class= "comment_body" ><%= comment.body %></div>
+  </div>
+  
+    	
+  <div id="edit_article_comment_<%= comment.id %>" style="display: none">
+    
+  </div>
+  <p>
+	   <% if user_signed_in? %>
+        <% 
+          review = Review.find(comment.review_id)
+          user_id = User.find(review.user_id)
+
+            if current_user.id == comment.user_id %>
+
+              <%= link_to "Edit", edit_review_comment_path(review_id: comment.review_id,
+               id: comment.id), :remote => true %>
+  			       
+               <%= link_to 'Destroy Comment', [comment.review, comment],
+                 method: :delete,
+                 data: { confirm: 'Are you sure?' } %>
+            <% elsif current_user.id == user_id.id %>
+              <%= link_to 'Destroy Comment', [comment.review, comment],
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' } %>
+            <%end%>
+
+        <%end%>
+      </p>
+</div>

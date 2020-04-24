@@ -1,0 +1,11 @@
+<h3>Questions / Comments</h3>
+
+
+<%= form_with model: [@review, @review.comments.build], class: "comment_class" do |f| %>
+	<p>	
+		<%= f.text_area :body %>
+	</p>
+
+	<%= f.submit 'Post' %>
+
+<%end%>
